@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 6 Seminar</title>
+</head>
+<body>
+
+<p class="super_element">Привет</p>
+<img src="https://placeimg.com/50/50/animals" alt="">
+<img src="https://placeimg.com/50/50/arch" alt="">
+<img src="https://placeimg.com/50/50/nature" alt="">
+<img src="https://placeimg.com/50/50/people" alt="">
+<img src="https://placeimg.com/50/50/tech" alt="">
+<img src="https://placeimg.com/50/50/tech/grayscale" alt="">
+<img src="https://placeimg.com/50/50/tech/sepia" alt="">
+<br>
+<button>Кнопка</button>
+<button class="super_element">Кнопка с классом btn</button>
+<button>Кнопка</button>
+<br>
+<textarea></textarea>
+<br>
+<ul>
+<li>
+<button>Кнопка 1</button>
+</li>
+<li>
+<button>Кнопка 2</button>
+</li>
+<li>
+<button>Кнопка 3</button>
+</li>
+<li>
+<button>Кнопка 4</button>
+</li>
+</ul>
+
+<script>
+    "use strict";
+
+    // 1. Вывести сообщение в консоль "все теги прогрузились" после полной загрузки DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('все теги прогрузились');
+    });
+
+    // 2. Вывести сообщение в консоль "страница загрузилась" после полной загрузки страницы
+    window.addEventListener('load', () => {
+        console.log('страница загрузилась');
+    });
+
+    // 3. Вывод сообщения при клике на теге
+    document.body.addEventListener('click', (event) => {
+        const target = event.target;
+        const elementClass = target.classList.contains('super_element') ? 'содержит' : 'не содержит';
+        const tagName = target.tagName.toLowerCase();
+        console.log(`Класс "super_element" ${elementClass} в элементе "${tagName}".`);
+    });
+
+    // 4. Сообщение при наведении на textarea
+    const textarea = document.querySelector('textarea');
+    textarea.addEventListener('mouseover', () => {
+        console.log('Вы навели на textarea.');
+    });
+
+    // 5. Вывод текста кнопки по клику на ul с использованием делегирования
+    const ul = document.querySelector('ul');
+    ul.addEventListener('click', (event) => {
+        const target = event.target;
+        if (target.tagName === 'BUTTON') {
+            console.log(target.textContent);
+        }
+    });
+
+    /* 6. Ответ на вопрос:
+       При клике на кнопку в ul сначала срабатывает событие клика на кнопке, 
+       затем срабатывает событие клика на родительском ul, которое включает делегирование.
+       Поэтому сначала выводится текст из пятой задачи, а затем из третьей. */
+
+    // 7. Изменение цвета заднего фона каждого второго тега li
+    const liElements = document.querySelectorAll('li');
+    liElements.forEach((li, index) => {
+        if (index % 2 !== 0) {
+            li.style.backgroundColor = 'green';
+        }
+    });
+</script>
+
+</body>
+</html>
